@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build -t test-actions:latest .
+           docker login --username=${{ secrets.AL_NAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.AL_PW }}
+           docker tag test-actions registry.cn-hangzhou.aliyuncs.com/hwt-test/test1:[latest]
+           docker push registry.cn-hangzhou.aliyuncs.com/hwt-test/test1:[latest]
