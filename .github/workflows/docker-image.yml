@@ -18,5 +18,5 @@ jobs:
       run: |
            echo ${{ secrets.AL_PW }} | docker login --username=${{ secrets.AL_NAME }} registry.cn-hangzhou.aliyuncs.com --password-stdin
            docker build -t test-actions:latest .
-           docker tag test-actions registry.cn-hangzhou.aliyuncs.com/hwt-test/test1:[latest]
+           docker tag test-actions registry.cn-hangzhou.aliyuncs.com/hwt-test/test1:latest
            docker push registry.cn-hangzhou.aliyuncs.com/hwt-test/test1:[latest]
